@@ -36,10 +36,21 @@ class _HomeState extends State<Home> {
     double weight = double.parse(weightController.text);
     double height = double.parse(heightController.text) / 100; 
     double imc = weight / (height * height);
-    if(imc < 18.6){
-      _infoText = "Abaixo do peso (${imc.toStringAsPrecision(3)})";
+    String imcS = imc.toStringAsPrecision(3);
+    if(imc < 18.5){
+      _infoText = "Abaixo do peso ($imcS)";
       // usa como teste o 73 e 300 eh isto
-    }  
+    } else if(imc >= 18.5 && imc <= 24.9) {
+          _infoText = "Peso normal ($imcS)";
+    } else if (imc >= 25 && imc <= 29.9 ) {
+        _infoText = "Sobrepeso ($imcS)";
+    } else if(imc >= 30 && imc <= 34.9){
+        _infoText = "Obesidade Grau 1 ($imcS)";
+    } else if(imc >= 35 && imc <=39.9){
+        _infoText = "Obesidade Grau 2 ($imcS)";
+    } else if(imc >= 40){
+        _infoText = "Obesidade Grau 3 ($imcS)";
+    }
     });
     
   }
